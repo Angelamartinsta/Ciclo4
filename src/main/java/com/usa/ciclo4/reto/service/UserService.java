@@ -25,13 +25,13 @@ public class UserService {
     public void save(User user){
         if(user.getId()==null){
             userRepository.save(user);
-        }else if (userRepository.getUser(user.getId()).isEmpty()){
+        }else if (!userRepository.getUser(user.getId()).isPresent()){
             userRepository.save(user);
         }
     }
 
     public boolean emailExists(String email){
-        if(userRepository.emailExists(email).isEmpty()){
+        if(!userRepository.emailExists(email).isPresent()){
             return false;
         }
         return true;
@@ -39,7 +39,7 @@ public class UserService {
 
     public Optional<User> login (String email,String password){
         Optional<User> user = userRepository.login(email,password);
-        if(user.isEmpty()){
+        if(!user.isPresent()){
             return Optional.of(new User(null,email,password,"NO DEFINIDO"));
         }
         return user;
