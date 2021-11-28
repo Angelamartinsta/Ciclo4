@@ -1,4 +1,4 @@
-var url = "http://localhost:8080"
+var url = "http://144.22.59.130/Ciclo4"
 function guardar() {
 
     var name = $.trim($("#nombre").val());
